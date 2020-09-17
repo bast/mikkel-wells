@@ -41,7 +41,11 @@ def read_chunk(f):
         data_750_nm += list(map(float, line.split()))
 
     # one empty line at the end
-    _ = next(f)
+    # but files that only contain one chunk have no line at the end
+    try:
+        _ = next(f)
+    except:
+        pass
 
     return data_590_nm, data_750_nm
 
